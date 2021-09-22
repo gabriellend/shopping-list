@@ -1,5 +1,4 @@
 // INITIALIZE POPOVER
-
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
@@ -9,7 +8,9 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 var button = document.querySelector('#add');
 var input = document.querySelector('#userinput');
 var ul = document.querySelector('ul');
-var liElements = document.querySelectorAll('li');	
+var liElements = document.querySelectorAll('li');
+var addItemDiv = document.querySelector('.input-group');
+var body = document.querySelector('body');
 
 // HELPER FUNCTIONS
 function toggleDone(event) {
@@ -57,23 +58,30 @@ function addDivAndButton(li) {
 }
 
 function saveItem(event) {
-	console.log(event)
-	if (event.target.value.length > 0 && event.keyCode === 13) {
+	var inputValue = event.target.value;
+	if (event.target.value.length > 0 && (event.keyCode === 13 || event.type === 'click')) {
 		var li = document.createElement('li');
 		li.addEventListener('click', toggleDone);
 		li.addEventListener('dblclick', editItem);
 		li.textContent = event.target.value;
 		event.target.parentNode.prepend(li);
 		event.target.remove();
-	 } else if (event.target.value.length === 0 && event.keyCode === 13) {
+	 } else if (event.target.value.length === 0 && (event.keyCode === 13 || event.type === 'click')) {
 		var li = document.createElement('li');
 		li.addEventListener('click', toggleDone);
 		li.addEventListener('dblclick', editItem);
-		li.textContent = '';
+		li.textContent = initialValue;
 		event.target.parentNode.prepend(li);
 		event.target.remove();
 	}
 }
+
+function saveItemOnClick(event) {
+	console.log(event)
+}
+
+// TO SAVE VALUE OF ITEM BEFORE IT IS EDITED
+var initialValue;
 
 function editItem(event) {
 	var item = event.target.innerHTML;
@@ -81,9 +89,12 @@ function editItem(event) {
 	itemInput.type = 'text';
 	itemInput.value = item;
 	itemInput.classList.add('edit');
+	initialValue = item;
 	itemInput.addEventListener('keypress', saveItem);
+	itemInput.addEventListener('click', saveItem);
 	event.target.parentNode.prepend(itemInput);
 	event.target.remove();
+	itemInput.select();
 }
 
 function createListItem() {
@@ -101,20 +112,46 @@ function addListItemOnClick() {
 	if (inputLength() > 0) {
 		createListItem();
 	}
+
+	if (ul.children.length === 1) {
+		addClearButton();
+	}
+}
+
+function clearList(event) {
+	ul.innerHTML = '';
+	event.target.remove();
+}
+
+function addClearButton() {
+	var clearButton = document.createElement('button');
+	clearButton.innerHTML = 'Clear';
+	clearButton.addEventListener('click', clearList);
+	clearButton.classList.add('btn', 'btn-outline-secondary', 'bg-light');
+	clearButton.setAttribute('id', 'clear');
+	addItemDiv.append(clearButton);
 }
 
 function addListItemOnEnter(event) {
 	if (inputLength() > 0 && event.keyCode === 13) {
 		createListItem();
 	}
+
+	if (ul.children.length === 1 && event.keyCode === 13) {
+		addClearButton();
+	}
 }
 
-function hidePopover() {
-	popoverList[0].dispose();
+function hidePopover(event) {
+	if (event.keyCode === 13 || event.type === 'click') {
+		popoverList[0].dispose();
+	}
 }
 
 // EVENT LISTENERS
 button.addEventListener('click', addListItemOnClick);
+button.addEventListener('click', hidePopover);
+
 input.addEventListener('keypress', addListItemOnEnter);
 input.addEventListener('keypress', hidePopover);
 

@@ -48,10 +48,14 @@ ul {
 }
 
 #add {
+  margin-right: 5px;
+}
+
+#add, #clear {
   border-radius: .25rem !important;
 }
 
-#add:hover {
+#add:hover, #clear:hover {
   background-color: #6c757d !important;
 }
 
