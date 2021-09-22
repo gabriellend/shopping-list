@@ -3,10 +3,23 @@ body {
   flex-direction: column;
   text-align: center;
   font-size: 1em;
+  background: url(paper.jpeg) no-repeat center center fixed;
+  background-size: cover;
+  background-position: 0 -125px;
+  margin: 0;
+  padding: 40px 0 0 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 input {
   box-sizing: border-box;
+  width: 80%;
+  margin-right: 5px;
+  border-radius: .25rem !important;
+}
+
+h1 {
+  margin: 65px 0 10px 0;
 }
 
 ul {
@@ -34,6 +47,44 @@ ul {
     -30px 20px 40px dimgrey;
 }
 
+#add {
+  border-radius: .25rem !important;
+}
+
+#add:hover {
+  background-color: #6c757d !important;
+}
+
+.deletebutton {
+  border-color: white;
+  padding: 0;
+  height: 25px;
+  width: 25px;
+  visibility: hidden;
+}
+
+.deletebutton:hover {
+  color: #6c757d;
+}
+
+.edit {
+  border-color: transparent;
+  height: 40px;
+}
+
+.edit:focus-visible {
+  outline: transparent auto 1px;
+}
+
+.show {
+  visibility: visible;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+}
+
 .width {
   width: 15%;
 }
@@ -49,40 +100,48 @@ ul {
 .itemdiv {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
 }
 
-@media only screen and (max-width: 1100px) {
-  .width {
+@media only screen and (max-width: 1024px) {
+ /* .width {
     width: 30%;
-  }
+  }*/
 
   body {
-    font-size: 2em;
+ /*   font-size: 2em;*/
+ background-size: auto 1750px;
+ background-position: -775px -300px;
   }
 }
 
-@media only screen and (max-width: 800px) {
-   .width {
+@media only screen and (max-width: 768px) {
+   /*.width {
     width: 35%;
-  }
+  }*/
 
    body {
-    font-size: 1em;
+   /* font-size: 1em;*/
+   background-size: auto;
+   background-position: -550px -200px;
   }
 }
 
-@media only screen and (max-width: 425px) {
-  .width {
+@media only screen and (max-width: 415px) {
+/*  .width {
     width: 55%;
-  }
+  }*/
 
   body {
-    font-size: 1em;
+  /*  font-size: 1em;*/
+  background-size: auto;
+  background-position: -625px -200px;
   }
 }
 
-@media only screen and (max-width: 285px) {
+/*@media only screen and (max-width: 285px) {
   .width {
     width: 65%;
   }
-}
+}*/

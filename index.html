@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	 <meta charset="utf-8">
+	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Javascript + DOM</title>
+	<title>Shopping List</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div class="input-group mb-3 w-25 margin">
+	  <input id="userinput" type="text" class="form-control" placeholder="Enter item" aria-label="Recipient's username" aria-describedby="button-addon2" data-bs-toggle="popover" title="Tip" data-bs-content="Click on items to cross them off! Double click to edit!" data-bs-placement="left" data-bs-container="body">
+	  <button id="add" class="btn btn-outline-secondary bg-light" type="button" id="button-addon2">Add</button>
+	</div>
 	<h1>Shopping List</h1>
-	<p id="first">Get it done today</p>
-	<input id="userinput" class="width margin" type="text" placeholder="enter items">
-	<button id="add" class="width margin">Add</button>
 	<ul>
-		<li class="bold red" random="23">Notebook</li>
-		<li>Jello</li>
-		<li>Spinach</li>
-		<li>Rice</li>
-		<li>Birthday Cake</li>
-		<li>Candles</li>
 	</ul>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
