@@ -109,12 +109,11 @@ function createListItem() {
 }
 
 function addListItemOnClick() {
-	if (inputLength() > 0) {
+	if (inputLength() > 0 && ul.children.length === 0) {
 		createListItem();
-	}
-
-	if (ul.children.length === 1) {
 		addClearButton();
+	} else if (inputLength() > 0) {
+		createListItem();
 	}
 }
 
@@ -133,12 +132,11 @@ function addClearButton() {
 }
 
 function addListItemOnEnter(event) {
-	if (inputLength() > 0 && event.keyCode === 13) {
+	if (inputLength() > 0 && event.keyCode === 13 && ul.children.length === 0) {
 		createListItem();
-	}
-
-	if (ul.children.length === 1 && event.keyCode === 13) {
 		addClearButton();
+	} else if (inputLength() > 0 && event.keyCode === 13) {
+		createListItem();
 	}
 }
 
