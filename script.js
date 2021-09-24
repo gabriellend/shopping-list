@@ -22,7 +22,13 @@ function inputLength() {
 }
 
 function deleteListItem(event) {
-	event.srcElement.parentNode.remove();
+	if (ul.children.length === 1) {
+		event.srcElement.parentNode.remove();
+		var clearButton = document.querySelector('#clear');
+		clearButton.remove();
+	} else {
+		event.srcElement.parentNode.remove();
+	}
 }
 
 function showDeleteButton(event) {
@@ -52,7 +58,6 @@ function addDivAndButton(li) {
 	deleteButton.addEventListener('click', deleteListItem);
 	deleteButton.classList.add('btn', 'btn-outline-secondary', 'bg-light', 'deletebutton');
 
-	
 	itemDiv.append(li, deleteButton);
 	ul.append(itemDiv);
 }
