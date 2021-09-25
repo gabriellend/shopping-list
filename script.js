@@ -1,16 +1,16 @@
 // INITIALIZE POPOVER
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
   return new bootstrap.Popover(popoverTriggerEl)
 });
 
 // ELEMENT SELECTORS
-var button = document.querySelector('#add');
-var input = document.querySelector('#userinput');
-var ul = document.querySelector('ul');
-var liElements = document.querySelectorAll('li');
-var addItemDiv = document.querySelector('.input-group');
-var body = document.querySelector('body');
+let button = document.querySelector('#add');
+let input = document.querySelector('#userinput');
+let ul = document.querySelector('ul');
+let liElements = document.querySelectorAll('li');
+let addItemDiv = document.querySelector('.input-group');
+let body = document.querySelector('body');
 
 // HELPER FUNCTIONS
 function toggleDone(event) {
@@ -24,7 +24,7 @@ function inputLength() {
 function deleteListItem(event) {
 	if (ul.children.length === 1) {
 		event.srcElement.parentNode.remove();
-		var clearButton = document.querySelector('#clear');
+		let clearButton = document.querySelector('#clear');
 		clearButton.remove();
 	} else {
 		event.srcElement.parentNode.remove();
@@ -48,12 +48,12 @@ function hideDeleteButton(event) {
 }
 
 function addDivAndButton(li) {
-	var itemDiv = document.createElement('div');
+	let itemDiv = document.createElement('div');
 	itemDiv.classList.add('itemdiv', 'width', 'margin');
 	itemDiv.addEventListener('mouseover', showDeleteButton);
 	itemDiv.addEventListener('mouseleave', hideDeleteButton);
 
-	var deleteButton = document.createElement('button');
+	let deleteButton = document.createElement('button');
 	deleteButton.innerHTML = 'x';
 	deleteButton.addEventListener('click', deleteListItem);
 	deleteButton.classList.add('btn', 'btn-outline-secondary', 'bg-light', 'deletebutton');
@@ -72,7 +72,7 @@ function saveItem(event) {
 		event.target.parentNode.prepend(li);
 		event.target.remove();
 	 } else if (event.target.value.length === 0 && (event.keyCode === 13 || event.type === 'click')) {
-		var li = document.createElement('li');
+		let li = document.createElement('li');
 		li.addEventListener('click', toggleDone);
 		li.addEventListener('dblclick', editItem);
 		li.textContent = initialValue;
@@ -90,6 +90,7 @@ function editItem(event) {
 	itemInput.type = 'text';
 	itemInput.value = item;
 	itemInput.classList.add('edit');
+	initialValue = item;
 	itemInput.addEventListener('keypress', saveItem);
 	itemInput.addEventListener('click', saveItem);
 	event.target.parentNode.prepend(itemInput);
@@ -123,7 +124,7 @@ function clearList(event) {
 }
 
 function addClearButton() {
-	var clearButton = document.createElement('button');
+	let clearButton = document.createElement('button');
 	clearButton.innerHTML = 'Clear';
 	clearButton.addEventListener('click', clearList);
 	clearButton.classList.add('btn', 'btn-outline-secondary', 'bg-light');
