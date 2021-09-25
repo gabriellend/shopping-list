@@ -63,9 +63,9 @@ function addDivAndButton(li) {
 }
 
 function saveItem(event) {
-	var inputValue = event.target.value;
+	let inputValue = event.target.value;
 	if (event.target.value.length > 0 && (event.keyCode === 13 || event.type === 'click')) {
-		var li = document.createElement('li');
+		let li = document.createElement('li');
 		li.addEventListener('click', toggleDone);
 		li.addEventListener('dblclick', editItem);
 		li.textContent = event.target.value;
@@ -81,20 +81,15 @@ function saveItem(event) {
 	}
 }
 
-function saveItemOnClick(event) {
-	console.log(event)
-}
-
 // TO SAVE VALUE OF ITEM BEFORE IT IS EDITED
-var initialValue;
+let initialValue;
 
 function editItem(event) {
-	var item = event.target.innerHTML;
-	var itemInput = document.createElement('input');
+	let item = event.target.innerHTML;
+	let itemInput = document.createElement('input');
 	itemInput.type = 'text';
 	itemInput.value = item;
 	itemInput.classList.add('edit');
-	initialValue = item;
 	itemInput.addEventListener('keypress', saveItem);
 	itemInput.addEventListener('click', saveItem);
 	event.target.parentNode.prepend(itemInput);
@@ -103,7 +98,7 @@ function editItem(event) {
 }
 
 function createListItem() {
-	var li = document.createElement('li');
+	let li = document.createElement('li');
 	li.addEventListener('click', toggleDone);
 	li.addEventListener('dblclick', editItem);
 	li.textContent = input.value;
