@@ -22,13 +22,17 @@ function inputLength() {
 }
 
 function deleteListItem(event) {
-	if (ul.children.length === 1) {
-		event.srcElement.parentNode.remove();
+	event.target.previousSibling.removeEventListener('click', toggleDone);
+	event.target.previousSibling.removeEventListener('click', editItem);
+	event.target.parentNode.removeEventListener('mouseover', showDeleteButton);
+	event.target.parentNode.removeEventListener('mouseleave', hideDeleteButton);
+	event.target.removeEventListener('click', deleteListItem);
+	event.srcElement.parentNode.remove();
+
+	if (ul.children.length === 0) {
 		let clearButton = document.querySelector('#clear');
 		clearButton.remove();
-	} else {
-		event.srcElement.parentNode.remove();
-	}
+	} 
 }
 
 function showDeleteButton(event) {
