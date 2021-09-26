@@ -1,2 +1,2 @@
 # shopping-list
-Add and delete items as needed
+This project was created as part of a wed developement course using HTML, plain JavaScript, and CSS. It began as a simple application with the capability to add items, cross them off, and delete them. In addition to these features, I added a dynamic 'Clear' button that appears when items are in the list and disappears when the list is empty. I also made the delete buttons invisible except for when you hover over them and included an edit feature where you can change items that are already on the list. It isn't yet optimized for devices with touch screens but I hope to implement that eventually as well.
