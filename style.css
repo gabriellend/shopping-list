@@ -83,6 +83,10 @@ ul {
   font-size: 1.5em;
 }
 
+.itemdiv:hover > .deletebutton {
+  visibility: visible;
+}
+
 @media only screen and (max-width: 1024px) {
     .w-25 {
       width: 35% !important;

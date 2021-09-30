@@ -22,11 +22,6 @@ function inputLength() {
 }
 
 function deleteListItem(event) {
-	event.target.previousSibling.removeEventListener('click', toggleDone);
-	event.target.previousSibling.removeEventListener('click', editItem);
-	event.target.parentNode.removeEventListener('mouseover', showDeleteButton);
-	event.target.parentNode.removeEventListener('mouseleave', hideDeleteButton);
-	event.target.removeEventListener('click', deleteListItem);
 	event.srcElement.parentNode.remove();
 
 	if (ul.children.length === 0) {
@@ -35,35 +30,18 @@ function deleteListItem(event) {
 	} 
 }
 
-function showDeleteButton(event) {
-	if (event.target.tagName === 'LI') {
-		event.srcElement.nextSibling.classList.add('show');
-	} else {
-		event.target.lastChild.classList.add('show');
-	}
-}
-
-function hideDeleteButton(event) {
-	if (event.target.tagName === 'LI') {
-		event.srcElement.nextSibling.classList.remove('show');
-	} else {
-		event.target.lastChild.classList.remove('show');
-	}
-}
-
-function addDivAndButton(li) {
+function createDivAndButton(li) {
 	let itemDiv = document.createElement('div');
 	itemDiv.classList.add('itemdiv', 'width', 'margin');
-	itemDiv.addEventListener('mouseover', showDeleteButton);
-	itemDiv.addEventListener('mouseleave', hideDeleteButton);
 
 	let deleteButton = document.createElement('button');
 	deleteButton.innerHTML = 'x';
-	deleteButton.addEventListener('click', deleteListItem);
 	deleteButton.classList.add('btn', 'btn-outline-secondary', 'bg-light', 'deletebutton');
 
-	itemDiv.append(li, deleteButton);
-	ul.append(itemDiv);
+	return {
+		itemDiv,
+		deleteButton
+	};
 }
 
 function saveItem(event) {
@@ -108,9 +86,25 @@ function createListItem() {
 	li.addEventListener('dblclick', editItem);
 	li.textContent = input.value;
 
-	addDivAndButton(li);
+	let {itemDiv, deleteButton} = createDivAndButton();
 
-	input.value = '';
+	itemDiv.append(li, deleteButton);
+	ul.append(itemDiv);
+
+	deleteButton.addEventListener('click', event => {
+		li.removeEventListener('click', toggleDone);
+		li.removeEventListener('dblclick', editItem);
+
+		deleteListItem(event);
+
+		li = null;
+		deleteButton = null;
+		itemDiv = null;
+		}, 
+		{once: true}
+	);
+
+	// input.value = '';
 }
 
 function addListItemOnClick() {
@@ -120,6 +114,7 @@ function addListItemOnClick() {
 	} else if (inputLength() > 0) {
 		createListItem();
 	}
+	input.value = '';
 }
 
 function clearList(event) {
@@ -140,8 +135,10 @@ function addListItemOnEnter(event) {
 	if (inputLength() > 0 && event.keyCode === 13 && ul.children.length === 0) {
 		createListItem();
 		addClearButton();
+		input.value = '';
 	} else if (inputLength() > 0 && event.keyCode === 13) {
 		createListItem();
+		input.value = '';
 	}
 }
 
