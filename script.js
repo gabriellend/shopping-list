@@ -81,30 +81,28 @@ function editItem(event) {
 }
 
 function createListItem() {
-	let li = document.createElement('li');
-	li.addEventListener('click', toggleDone);
-	li.addEventListener('dblclick', editItem);
-	li.textContent = input.value;
+  let li = document.createElement('li');
+  li.addEventListener('click', toggleDone);
+  li.addEventListener('dblclick', editItem);
+  li.textContent = input.value;
 
-	let {itemDiv, deleteButton} = createDivAndButton();
+  let {itemDiv, deleteButton} = createDivAndButton();
 
-	itemDiv.append(li, deleteButton);
-	ul.append(itemDiv);
+  itemDiv.append(li, deleteButton);
+  ul.append(itemDiv);
 
-	deleteButton.addEventListener('click', event => {
-		li.removeEventListener('click', toggleDone);
-		li.removeEventListener('dblclick', editItem);
+  deleteButton.addEventListener('click', event => {
+	li.removeEventListener('click', toggleDone);
+	li.removeEventListener('dblclick', editItem);
 
-		deleteListItem(event);
+	deleteListItem(event);
 
-		li = null;
-		deleteButton = null;
-		itemDiv = null;
-		}, 
-		{once: true}
-	);
-
-	// input.value = '';
+	li = null;
+	deleteButton = null;
+	itemDiv = null;
+	}, 
+	{once: true}
+  );
 }
 
 function addListItemOnClick() {

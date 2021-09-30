@@ -38,6 +38,9 @@ ul {
 #add:hover, #clear:hover {
   background-color: #6c757d !important;
 }
+.btn-outline-secondary {
+  color: #212529;
+}
 
 .deletebutton {
   border-color: white;

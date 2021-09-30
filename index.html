@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A simple, clean javascript list app to keep track of your to-do items.">
 	<title>Shopping List</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
@@ -10,8 +11,9 @@
 </head>
 <body>
 	<div class="input-group mb-3 w-25 margin">
+	  <label for "userinput"></label>
 	  <input id="userinput" type="text" class="form-control" placeholder="Enter item" aria-label="Recipient's username" aria-describedby="button-addon2" data-bs-toggle="popover" title="Tip" data-bs-content="Click on items to cross them off! Double click to edit!" data-bs-placement="left" data-bs-container="body">
-	  <button id="add" class="btn btn-outline-secondary bg-light" type="button" id="button-addon2">Add</button>
+	  <button id="add" class="btn btn-outline-secondary bg-light" type="button">Add</button>
 	</div>
 	<h1>Shopping List</h1>
 	<ul>
